@@ -1,0 +1,302 @@
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbud-update-activation-environment 2>/dev/null && \
+    dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_SESSION_TYPE=wayland
+
+# Default config for sway
+#
+# Copy this to ~/.config/sway/config and edit it to your liking.
+#
+# Read `man 5 sway` for a complete reference.
+
+### Variables
+#
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+
+set $lock ~/.local/bin/scripts/lock.sh
+set $power ~/.config/rofi/modi/power
+set $wifi ~/.config/rofi/modi/nmcli
+
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+# Your preferred terminal emulator
+set $term alacritty
+# Your preferred application launcher
+# Note: pass the final command to swaymsg so that the resulting window can be opened
+# on the original workspace that the command was run on.
+
+# Application launcher with fzf
+set $menu exec wofi --show drun --allow-images --allow-markup --hide-scroll
+
+# Windows config
+for_window [app_id="^launcher$"] floating enable, border none, opacity 0.8
+
+set $screen grim -g "$(slurp)" - | wl-copy
+
+set $cl_high #0f111b
+set $cl_indi #686f9a
+set $cl_back #0f111b
+set $cl_fore #f0f1ce
+set $cl_unf_fore #686f9a
+set $cl_urge #b3a1e6
+set $cl_urge_fore #0f111b
+
+# Colors                border   bg       text     indi     childborder
+client.focused          $cl_high $cl_high $cl_fore $cl_indi $cl_high
+client.focused_inactive $cl_back $cl_back $cl_fore $cl_back $cl_back
+client.unfocused        $cl_back $cl_back $cl_unf_fore $cl_back $cl_back
+client.urgent           $cl_urge $cl_urge $cl_urge_fore $cl_urge $cl_urge
+
+# Window borders
+default_border pixel 1
+default_floating_border normal
+hide_edge_borders smart
+
+smart_gaps on
+gaps inner 10
+
+# Autostart
+exec --no-startup-id mako
+
+### Output configuration
+#
+# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+output eDP-1 bg /home/isaachmi/wallpapers/0315.jpg fill
+output HDMI-A-1 bg /home/isaachmi/wallpapers/0315.jpg fill
+# output HDMI-A-1 bg /home/frostri/wallpapers/0314.jpg center #fbcba5
+#
+# Example configuration:
+#
+output eDP-1 resolution 1366x768 position 0,0
+output HDMI-A-1 resolution 1366x768 position 1366,0
+#
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+
+### Idle configuration
+#
+# Example configuration:
+#
+# exec swayidle -w \
+#          timeout 300 'swaylock -f -c 000000' \
+#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+#          before-sleep 'swaylock -f -c 000000'
+#
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+
+### Input configuration
+#
+# Example configuration:
+#
+#   input "2:14:SynPS/2_Synaptics_TouchPad" {
+#       dwt enabled
+#       tap enabled
+#       natural_scroll enabled
+#       middle_emulation enabled
+#   }
+
+# Keyboard Layout
+input * {
+  xkb_layout "latam"
+}
+
+#
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+
+### Key bindings
+#
+# Basics:
+#
+    # Start a terminal
+    bindsym $mod+Return exec $term
+
+    # Kill focused window
+    bindsym $mod+c kill
+
+    # Start your launcher
+    bindsym $mod+m exec $menu
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
+
+    # Reload the configuration file
+    bindsym $mod+Shift+r reload
+    # Execute the logout interface
+    bindsym $mod+Shift+q exec wlogout
+#
+# Moving around:
+#
+    # Move your focus around
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+    # Or use $mod+[up|down|left|right]
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+
+    # Move the focused window with the same, but add Shift
+    bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$right move right
+    # Ditto, with arrow keys
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+#
+# Workspaces:
+#
+    # Switch to workspace
+    bindsym $mod+1 workspace dev
+    bindsym $mod+2 workspace www
+    bindsym $mod+3 workspace chat
+    bindsym $mod+4 workspace file
+    bindsym $mod+5 workspace zoom
+    bindsym $mod+6 workspace sys
+    bindsym $mod+7 workspace aud
+    bindsym $mod+8 workspace img
+    bindsym $mod+9 workspace vid
+    bindsym $mod+0 workspace game
+    # Move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace dev
+    bindsym $mod+Shift+2 move container to workspace www
+    bindsym $mod+Shift+3 move container to workspace chat
+    bindsym $mod+Shift+4 move container to workspace file
+    bindsym $mod+Shift+5 move container to workspace zoom
+    bindsym $mod+Shift+6 move container to workspace sys
+    bindsym $mod+Shift+7 move container to workspace aud
+    bindsym $mod+Shift+8 move container to workspace img
+    bindsym $mod+Shift+9 move container to workspace vid
+    bindsym $mod+Shift+0 move container to workspace game
+    # Note: workspaces can have any name you want, not just numbers.
+    # We just use 1-10 as the default.
+#
+# Layout stuff:
+#
+    # You can "split" the current object of your focus with
+    # $mod+b or $mod+v, for horizontal and vertical splits
+    # respectively.
+    # bindsym $mod+b splith
+    # bindsym $mod+v splitv
+
+    # Switch the current container between different layout styles
+    bindsym $mod+tab layout stacking
+    bindsym $mod+Shift+tab layout tabbed
+    bindsym $mod+Ctrl+tab layout toggle split
+
+    # Make the current focus fullscreen
+    bindsym $mod+Ctrl+f fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+Shift+space floating toggle
+
+# Scratchpad:
+#
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+minus scratchpad show
+#
+# Apps
+#
+    # Telegram
+    bindsym $mod+t exec telegram-desktop
+    # Zoom
+    bindsym $mod+z exec zoom
+    # Screenshot
+    bindsym Print exec $screen
+    # Screenshot all
+    bindsym Shift+Print exec grim - | wl-copy
+    # Screen record
+    bindsym Ctrl+Shift+Print exec wf-recorder --audio -g "$(slurp)" -f ~/Videos/recording_$(date +"%Y-%m-%d_%H:%M:%S.mp4")
+    # Stop the screen recording
+    bindsym Ctrl+Shift+BackSpace exec killall -s SIGINT wf-recorder
+    # File Explorer
+    bindsym $mod+e exec pcmanfm
+    # Web Browsers
+    bindsym $mod+f exec firefox
+    # Discord
+    bindsym $mod+d exec discord
+    # Color Picker
+    bindsym $mod+p exec wl-color-picker
+    # PokeMMO
+    bindsym $mod+Shift+p exec pokemmo-launcher
+
+# Multimedia
+bindsym --locked XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') +5%
+bindsym --locked XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') -5%
+bindsym --locked XF86AudioMute exec --no-startup-id pactl set-sink-mute $(pacmd list-sinks |awk '/* index:/{print $3}') toggle
+bindsym --locked XF86AudioPlay exec playerctl play-pause
+bindsym --locked XF86AudioNext exec playerctl next
+bindsym --locked XF86AudioPrev exec playerctl previous
+
+# Brightness controls
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set +10%
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 10%-
+
+#
+# Resizing containers:
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+
+bar {
+    swaybar_command waybar
+}
+
+set $gnome-schema org.gnome.desktop.interface
+
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'Material-Black-Mango-3.36'
+    gsettings set $gnome-schema icon-theme 'Papirus'
+    gsettings set $gnome-schema cursor-theme 'oreo_spark_orange_cursors'
+    gsettings set $gnome-schema font-name 'Cantarell'
+    nice -n -20 udevmon -c /etc/interception/udevmon.d/udevmon.yaml &
+    # fcitx &
+    # export XMODIFIERS="@im=fcitx"
+    # export GTK_IM_MODULE=fcitx
+    # export QT_IM_MODULE=fcitx
+    # export DefaultIMModule=fcitx
+}
+
+include /etc/sway/config.d/*
