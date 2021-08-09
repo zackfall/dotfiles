@@ -6,31 +6,35 @@
 # List of the package to install.
 # Each package have to be in github.
 PACKAGES=(
-  "pineapplegiant/spaceduck"
+  # Theme
   "ayu-theme/ayu-vim"
+  # General purpose
   "neovim/nvim-lspconfig"
   "sirver/UltiSnips"
   "tpope/vim-commentary"
   "tpope/vim-surround"
-  "togglebyte/togglerust"
   "junegunn/fzf.vim"
   "christoomey/vim-tmux-navigator"
-  "luochen1990/rainbow"
-  "lilydjwg/colorizer"
-  "airblade/vim-gitgutter"
-  "kkoomen/vim-doge"
-  "Vimjas/vim-python-pep8-indent"
   "Yggdroot/indentLine"
-  "RRethy/vim-illuminate"
-  "wesQ3/vim-windowswap"
   "lervag/wiki.vim"
-  "dense-analysis/ale"
-  "vim-python/python-syntax"
-  "neoclide/coc.nvim"
+  "RRethy/vim-illuminate"
   "iamcco/mathjax-support-for-mkdp"
   "iamcco/markdown-preview.vim"
-  "sheerun/vim-polyglot"
+  "matze/vim-move"
+  # dev
+  "togglebyte/togglerust"
+  "airblade/vim-gitgutter"
+  "kkoomen/vim-doge"
+  "dense-analysis/ale"
+  "Vimjas/vim-python-pep8-indent"
+  "mattn/emmet-vim"
+  # syntax highlight
   "rust-lang/rust.vim"
+  "vim-python/python-syntax"
+  "HerringtonDarkholme/yats.vim"
+  "pangloss/vim-javascript"
+  "evanleck/vim-svelte"
+  "posva/vim-vue"
 )
 
 if [[ $1 == "--init" ]]

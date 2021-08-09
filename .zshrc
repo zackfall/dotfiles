@@ -154,6 +154,4 @@ if [ -f '/home/isaachmi/google-cloud-sdk/path.zsh.inc' ]; then . '/home/isaachmi
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/isaachmi/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/isaachmi/google-cloud-sdk/completion.zsh.inc'; fi
 
-# Fetch master 6000
-~/fm6000 -dog -o IsaacOS -n -m 25 -g 4 -l 35
 source `which activate.sh`

@@ -39,10 +39,6 @@ set smartcase
 set smartindent
 set wildmenu
 set wildmode=full
-set foldmethod=indent
-set foldenable
-set foldlevelstart=10
-set foldnestmax=10
 set noruler
 set backspace=indent,eol,start
 set ttyfast
@@ -71,13 +67,18 @@ set nobackup
 set nowritebackup
 set updatetime=300
 set wildignore+=*/target/*,*/tmp/*,*.swp,*.pyc,*__pycache__/*
+set list
+set listchars=eol:$,tab:>-,trail:·,extends:>,precedes:<
+set showmode
+
+" Set block cursor
+set guicursor=i:block
 
 " -----------------------------------------------------------------------------
 "     * Key bindings *
 " -----------------------------------------------------------------------------
 let mapleader = " "
 noremap <leader>fs :Files<cr>
-noremap <leader>rg :Rg<cr>
 nnoremap tn :tabnew<Space>
 nnoremap tk :tabnext<cr>
 nnoremap tj :tabprev<cr>
@@ -90,14 +91,6 @@ nnoremap tl :tablast<cr>
 nmap <leader>g :copen<CR>
 nmap <leader>n :cnext<CR>
 nmap <leader>N :cprev<CR>
-
-" -----------------------------------------------------------------------------
-"     * Resizing panes *
-" -----------------------------------------------------------------------------
-nmap <A-h> :vertical resize -4<CR>
-nmap <A-l> :vertical resize +4<CR>
-nmap <A-k> :resize +4<CR>
-nmap <A-j> :resize -4<CR>
 
 " -----------------------------------------------------------------------------
 "     * Scratch buffer *

@@ -3,9 +3,16 @@
 " ==============================================================================
 
 " ==============================================================================
-"     * Rainbow *
+"     * IndentLine *
 " ==============================================================================
-let g:rainbow_active = 1
+let g:indentLine_char_list = ['·']
+let g:indentLine_leadingSpaceEnabled = 1
+let g:indentLine_leadingSpaceChar = '·'
+
+" ==============================================================================
+"     * Emmet *
+" ==============================================================================
+let g:user_emmet_leader_key=','
 
 " ==============================================================================
 "     * Wiki *
@@ -39,38 +46,6 @@ nmap <silent><space>a :20Lexplore!<cr>
 let g:netrw_liststyle = 3
 
 " ==============================================================================
-"     * ALE *
-" ==============================================================================
-nnoremap gd :ALEGoToDefinition<CR>
-let g:ale_fixers = {
-      \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \ 'rust': ['rustfmt'],
-      \ 'javascript': ['prettier'],
-      \ 'python': ['black'],
-      \ 'typescript': ['prettier'],
-      \ 'html': ['prettier'],
-      \ 'css': ['prettier'],
-      \ 'vue': ['prettier'],
-      \ 'jsx': ['prettier']
-\}
-let g:ale_fix_on_save = 1
-let g:ale_enabled = 0
-
-" =============================================================================
-"     * WindowSwap *
-" =============================================================================
-function! WindowSwapInDirection(dir)
-  call WindowSwap#MarkWindowSwap()
-  exec 'wincmd ' . a:dir
-  call WindowSwap#DoWindowSwap()
-endfunction
-
-noremap <silent> <M-S-h> :call WindowSwapInDirection('h')<cr>
-noremap <silent> <M-S-j> :call WindowSwapInDirection('j')<cr>
-noremap <silent> <M-S-k> :call WindowSwapInDirection('k')<cr>
-noremap <silent> <M-S-l> :call WindowSwapInDirection('l')<cr>
-
-" ==============================================================================
 "     * UltiSnips *
 " ==============================================================================
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -86,20 +61,21 @@ nmap <silent> <F9> :MarkdownPreview<CR>
 nmap <silent> <F10> :StopMarkdownPreview<CR>
 
 " ==============================================================================
-"     * Coc *
+"     * ALE *
 " ==============================================================================
-" Show doc
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim', 'help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
+nnoremap gd :ALEGoToDefinition<CR>
+let g:ale_fixers = {
+      \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \ 'rust': ['rustfmt'],
+      \ 'javascript': ['eslint'],
+      \ 'python': ['black'],
+      \ 'typescript': ['deno'],
+      \ 'html': ['prettier'],
+      \ 'css': ['prettier'],
+      \ 'vue': ['prettier']
+\}
+let g:ale_fix_on_save = 1
+let g:ale_enabled = 0
 
 " ==============================================================================
 "     * DoGe *
