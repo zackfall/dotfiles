@@ -16,11 +16,11 @@ PACKAGES=(
   "junegunn/fzf.vim"
   "christoomey/vim-tmux-navigator"
   "Yggdroot/indentLine"
-  "lervag/wiki.vim"
   "RRethy/vim-illuminate"
   "iamcco/mathjax-support-for-mkdp"
   "iamcco/markdown-preview.vim"
   "matze/vim-move"
+  "jiangmiao/auto-pairs"
   # dev
   "togglebyte/togglerust"
   "airblade/vim-gitgutter"
@@ -28,6 +28,7 @@ PACKAGES=(
   "dense-analysis/ale"
   "Vimjas/vim-python-pep8-indent"
   "mattn/emmet-vim"
+  "alvan/vim-closetag"
   # syntax highlight
   "rust-lang/rust.vim"
   "vim-python/python-syntax"

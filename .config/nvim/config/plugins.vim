@@ -15,23 +15,24 @@ let g:indentLine_leadingSpaceChar = '·'
 let g:user_emmet_leader_key=','
 
 " ==============================================================================
-"     * Wiki *
+"     * UltiSnips *
 " ==============================================================================
-let g:wiki_root = '~/wiki'
-let g:wiki_toc_title = 'Table of Content'
-let g:wiki_filetypes = ['md', 'wiki']
-let g:wiki_link_target_type = 'md'
-let g:wiki_link_extension = '.md'
-" Create or Open a page with the WikiOpen command
-let g:wiki_map_create_page = 'CreatePage'
+let g:UltiSnipsExpandTrigger="<tab>"
 
-function CreatePage(name) abort
-  let l:name = wiki#get_root() . '/' . a:name
-  " If the file is new, then append the current date
-  return filereadable(l:name)
-        \ ? a:name
-        \ : a:name . '_' . strftime('%Y-%m-%d')
-endfunction
+" ==============================================================================
+"     * Closetag *
+" ==============================================================================
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml, .vue'
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+let g:closetag_filetypes = 'html,xhtml,phtml,vue'
+let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+let g:closetag_emptyTags_caseSensitive = 1
+let g:closetag_regions = {
+      \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+      \ 'javascript.jsx': 'jsxRegion',
+      \ }
+let g:closetag_shortcut = '>'
+let g:closetag_close_shortcut = '<leader>>'
 
 " =============================================================================
 "     * Fzf *
@@ -44,11 +45,6 @@ command! -bang -nargs=? -complete=dir Files
 " ==============================================================================
 nmap <silent><space>a :20Lexplore!<cr>
 let g:netrw_liststyle = 3
-
-" ==============================================================================
-"     * UltiSnips *
-" ==============================================================================
-let g:UltiSnipsExpandTrigger="<tab>"
 
 if !has('gui_running')
   set t_Co=256
