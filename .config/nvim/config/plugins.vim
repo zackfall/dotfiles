@@ -17,15 +17,15 @@ let g:user_emmet_leader_key=','
 " ==============================================================================
 "     * UltiSnips *
 " ==============================================================================
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<S-tab>"
 
 " ==============================================================================
 "     * Closetag *
 " ==============================================================================
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml, .vue'
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
-let g:closetag_filetypes = 'html,xhtml,phtml,vue'
-let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.vue,*.jsx,*.tsx'
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.tsx'
+let g:closetag_filetypes = 'html,xhtml,phtml,vue,javascriptreact,typescriptreact'
+let g:closetag_xhtml_filetypes = 'xhtml,jsx,tsx'
 let g:closetag_emptyTags_caseSensitive = 1
 let g:closetag_regions = {
       \ 'typescript.tsx': 'jsxRegion,tsxRegion',
@@ -63,10 +63,12 @@ nnoremap gd :ALEGoToDefinition<CR>
 let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
       \ 'rust': ['rustfmt'],
-      \ 'javascript': ['eslint'],
+      \ 'javascript': ['prettier'],
+      \ 'javascriptreact': ['prettier'],
       \ 'python': ['black'],
       \ 'typescript': ['deno'],
       \ 'html': ['prettier'],
+      \ 'json': ['prettier'],
       \ 'css': ['prettier'],
       \ 'vue': ['prettier']
 \}

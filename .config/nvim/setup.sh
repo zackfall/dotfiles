@@ -6,8 +6,6 @@
 # List of the package to install.
 # Each package have to be in github.
 PACKAGES=(
-  # Theme
-  "ayu-theme/ayu-vim"
   # General purpose
   "neovim/nvim-lspconfig"
   "sirver/UltiSnips"
@@ -34,8 +32,8 @@ PACKAGES=(
   "vim-python/python-syntax"
   "HerringtonDarkholme/yats.vim"
   "pangloss/vim-javascript"
-  "evanleck/vim-svelte"
-  "posva/vim-vue"
+  "MaxMEllon/vim-jsx-pretty"
+  "peitalin/vim-jsx-typescript"
 )
 
 if [[ $1 == "--init" ]]

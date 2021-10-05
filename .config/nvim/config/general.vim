@@ -2,7 +2,7 @@
 "     * General Settings *
 " ==============================================================================
 
-syn keyword Todo TODO DONE READY HACK
+syn keyword Todo TODO FIX DONE READY HACK
 
 noremap <Up> <Nop>
 noremap <Down> <Nop>
@@ -17,7 +17,7 @@ if exists('+termguicolors')
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum]"
   set termguicolors
 endif
-colorscheme ayu
+colorscheme isaaczmi
 " Depends the colorscheme you use, uncomment this
 " set background=light
 
@@ -138,3 +138,12 @@ if has("python")
         call LoadVirtualEnv(defaultvirtualenv)
     endif
 endif
+
+" Funtion for get the highlight group the cursor is over
+nmap <leader>sp :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunction
