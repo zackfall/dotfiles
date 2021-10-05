@@ -1,0 +1,9 @@
+[alias]
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[core]
+	editor = nvim
+[user]
+	name = Isaac Zamora
+	email = isaachmi@protonmail.com
+[init]
+	defaultBranch = main
