@@ -17,7 +17,7 @@ let g:user_emmet_leader_key=','
 " ==============================================================================
 "     * UltiSnips *
 " ==============================================================================
-let g:UltiSnipsExpandTrigger="<S-tab>"
+" let g:UltiSnipsExpandTrigger="<S-tab>"
 
 " ==============================================================================
 "     * Closetag *
@@ -40,40 +40,9 @@ let g:closetag_close_shortcut = '<leader>>'
 command! -bang -nargs=? -complete=dir Files
         \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 
-" ==============================================================================
-"     * Explorer *
-" ==============================================================================
-nmap <silent><space>a :20Lexplore!<cr>
-let g:netrw_liststyle = 3
-
 if !has('gui_running')
   set t_Co=256
 endif
-
-" ==============================================================================
-"     * MarkdownPreview *
-" ==============================================================================
-nmap <silent> <F9> :MarkdownPreview<CR>
-nmap <silent> <F10> :StopMarkdownPreview<CR>
-
-" ==============================================================================
-"     * ALE *
-" ==============================================================================
-nnoremap gd :ALEGoToDefinition<CR>
-let g:ale_fixers = {
-      \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \ 'rust': ['rustfmt'],
-      \ 'javascript': ['prettier'],
-      \ 'javascriptreact': ['prettier'],
-      \ 'python': ['black'],
-      \ 'typescript': ['deno'],
-      \ 'html': ['prettier'],
-      \ 'json': ['prettier'],
-      \ 'css': ['prettier'],
-      \ 'vue': ['prettier']
-\}
-let g:ale_fix_on_save = 1
-let g:ale_enabled = 0
 
 " ==============================================================================
 "     * DoGe *
@@ -84,3 +53,15 @@ let g:doge_enable_mappings = 1
 "     * Python syntax highligth *
 " ==============================================================================
 let g:python_highlight_all = 1
+
+" ==============================================================================
+"     * Diagnostics *
+" ==============================================================================
+" Set updatetime for CursorHold
+" 300ms of no cursor movement to trigger CursorHold
+set updatetime=300
+" Show diagnostic popup on cursor hold
+autocmd CursorHold * lua vim.diagnostic.open_float()
+
+" Format on write
+autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 200)

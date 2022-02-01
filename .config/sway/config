@@ -62,12 +62,13 @@ gaps inner 10
 
 # Autostart
 exec --no-startup-id mako
+exec --no-startup-id enpass
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-#output eDP-1 bg /home/isaachmi/wallpapers/0315.jpg fill
-#output HDMI-A-1 bg /home/isaachmi/wallpapers/0315.jpg fill
+output eDP-1 bg /home/isaac/wallpapers/0001.jpeg fill
+output HDMI-A-1 bg /home/isaac/wallpapers/0001.jpeg fill
 # output HDMI-A-1 bg /home/frostri/wallpapers/0314.jpg center #fbcba5
 #
 # Example configuration:
@@ -103,7 +104,7 @@ output HDMI-A-1 resolution 1366x768 position 0,0
 
 # Keyboard Layout
 input * {
-  xkb_layout "latam"
+  xkb_layout "es"
 }
 
 #
@@ -225,8 +226,12 @@ input * {
     bindsym $mod+z exec zoom
     # Screenshot
     bindsym Print exec $screen
+    # Screenshot saved
+    bindsym Alt+Print exec grim -g "$(slurp)" ~/Images/Screenshots/screenshot_$(date +"%Y-%m-%d_%H:%M:%S.png")
     # Screenshot all
     bindsym Shift+Print exec grim - | wl-copy
+    # Screenshot all saved
+    bindsym Alt+Shift+Print exec grim ~/Images/Screenshots/screenshot_$(date +"%Y-%m-%d_%H:%M:%S.png")
     # Screen record
     bindsym Ctrl+Shift+Print exec wf-recorder --audio -g "$(slurp)" -f ~/Videos/recording_$(date +"%Y-%m-%d_%H:%M:%S.mp4")
     # Stop the screen recording
@@ -284,13 +289,13 @@ bar {
     swaybar_command waybar
 }
 
-#set $gnome-schema org.gnome.desktop.interface
+set $gnome-schema org.gnome.desktop.interface
 
 #exec_always {
-    #gsettings set $gnome-schema gtk-theme 'Material-Black-Mango-3.36'
-    #gsettings set $gnome-schema icon-theme 'Papirus'
+    exec gsettings set $gnome-schema gtk-theme 'Orchis-orange-dark'
+    exec gsettings set $gnome-schema icon-theme 'Flatery-Orange-Dark'
     #gsettings set $gnome-schema cursor-theme 'oreo_spark_orange_cursors'
-    #gsettings set $gnome-schema font-name 'Cantarell'
+    exec gsettings set $gnome-schema font-name 'Cantarell'
     #nice -n -20 udevmon -c /etc/interception/udevmon.d/udevmon.yaml &
     # fcitx &
     # export XMODIFIERS="@im=fcitx"

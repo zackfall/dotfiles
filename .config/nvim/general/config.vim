@@ -4,11 +4,6 @@
 
 syn keyword Todo TODO FIX DONE READY HACK
 
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
-
 " ==============================================================================
 "     * ColorScheme *
 " ==============================================================================
@@ -17,9 +12,9 @@ if exists('+termguicolors')
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum]"
   set termguicolors
 endif
-colorscheme isaaczmi
+colorscheme onedark
 " Depends the colorscheme you use, uncomment this
-" set background=light
+set background=light
 
 " =============================================================================
 "     * Default settings *
@@ -74,31 +69,6 @@ set showmode
 " Set block cursor
 set guicursor=i:block
 
-" -----------------------------------------------------------------------------
-"     * Key bindings *
-" -----------------------------------------------------------------------------
-let mapleader = " "
-noremap <leader>fs :Files<cr>
-nnoremap tn :tabnew<Space>
-nnoremap tk :tabnext<cr>
-nnoremap tj :tabprev<cr>
-nnoremap th :tabfirst<cr>
-nnoremap tl :tablast<cr>
-
-" -----------------------------------------------------------------------------
-"     * Errors / warnings *
-" -----------------------------------------------------------------------------
-nmap <leader>g :copen<CR>
-nmap <leader>n :cnext<CR>
-nmap <leader>N :cprev<CR>
-
-" -----------------------------------------------------------------------------
-"     * Scratch buffer *
-"     Create a new scrach buffer
-" -----------------------------------------------------------------------------
-nmap <C-n> :vnew
-nmap <A-n> :new
-
 " ==============================================================================
 "     * Remember the last position of the cursor *
 " ==============================================================================
@@ -140,10 +110,21 @@ if has("python")
 endif
 
 " Funtion for get the highlight group the cursor is over
-nmap <leader>sp :call <SID>SynStack()<CR>
-function! <SID>SynStack()
+function! SynStack()
   if !exists("*synstack")
     return
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunction
+
+function! OpenTerm()
+  :vnew
+  :Tnew
+endfunction
+
+" Neoformat
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END
+let g:neoformat_only_msg_on_error = 1
