@@ -3,13 +3,6 @@ exec hash dbud-update-activation-environment 2>/dev/null && \
     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_SESSION_TYPE=wayland
-
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
-
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -67,14 +60,14 @@ exec --no-startup-id enpass
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output eDP-1 bg /home/isaac/wallpapers/0001.jpeg fill
-output HDMI-A-1 bg /home/isaac/wallpapers/0001.jpeg fill
+output eDP-1 bg /home/isaac/wallpapers/0005.jpg fill
+output HDMI-A-1 bg /home/isaac/wallpapers/0005.jpg fill
 # output HDMI-A-1 bg /home/frostri/wallpapers/0314.jpg center #fbcba5
 #
 # Example configuration:
 #
-output eDP-1 resolution 1366x768 position 1366,0
-output HDMI-A-1 resolution 1366x768 position 0,0
+output eDP-1 resolution 1366x768 position 1920,0
+output HDMI-A-1 resolution 1920x1080 position 0,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -239,7 +232,7 @@ input * {
     # File Explorer
     bindsym $mod+e exec pcmanfm
     # Web Browsers
-    bindsym $mod+f exec brave
+    bindsym $mod+f exec firefox
     # Discord
     bindsym $mod+d exec discord
     # Color Picker
@@ -291,7 +284,7 @@ bar {
 
 set $gnome-schema org.gnome.desktop.interface
 
-#exec_always {
+exec_always {
     exec gsettings set $gnome-schema gtk-theme 'Orchis-orange-dark'
     exec gsettings set $gnome-schema icon-theme 'Flatery-Orange-Dark'
     #gsettings set $gnome-schema cursor-theme 'oreo_spark_orange_cursors'
@@ -302,6 +295,6 @@ set $gnome-schema org.gnome.desktop.interface
     # export GTK_IM_MODULE=fcitx
     # export QT_IM_MODULE=fcitx
     # export DefaultIMModule=fcitx
-#}
+}
 
 include /etc/sway/config.d/*

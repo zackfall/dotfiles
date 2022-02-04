@@ -142,3 +142,8 @@ bindkey -M vicmd 'j' history-substring-search-down
 # }}} End configuration added by Zim install
 
 # Created by newuser for 5.8
+
+# fnm
+export PATH=/home/isaac/.fnm:$PATH
+eval "`fnm env`"
+export GPG_TTY=$(tty)

@@ -65,3 +65,5 @@ autocmd CursorHold * lua vim.diagnostic.open_float()
 
 " Format on write
 autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 200)
+
+let g:copilot_no_tab_map = v:true

@@ -1,8 +1,8 @@
 * {
     border:        none;
     border-radius: 0;
-    font-family:   Sans;
-    font-size:     15px;
+    font-family:   Ubuntu Nerd Font, monospace;
+    font-size:     14px;
     box-shadow:    none;
     text-shadow:   none;
     transition-duration: 0s;
@@ -21,13 +21,20 @@ window#waybar.solo {
 }
 
 #workspaces {
-    margin: 0 5px;
+    font-family: UbuntuMono Nerd Font, monospace;
+    font-size: 16px;
+    margin: 4px 0 0 16px;
 }
 
 #workspaces button {
-    padding:    0 3px;
+    padding: 0 6px;
     color: #686f9a;
     transition: 0.3s linear;
+    opacity: 0.95;
+}
+
+#workspaces button:hover {
+    background: #525563;
     opacity: 0.95;
 }
 
@@ -54,8 +61,12 @@ window#waybar.solo {
 }
 
 #clock {
-    margin:     0px 16px 0px 10px;
+    margin:     4px 16px 0px 10px;
     min-width:  140px;
+}
+
+#battery {
+    margin-top: 4px;
 }
 
 #battery.warning {
@@ -76,4 +87,8 @@ window#waybar.solo {
 
 #custom-storage.critical {
     color:      rgba(238, 46, 36, 1);
+}
+
+#tray {
+    margin-left: 10px;
 }

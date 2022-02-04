@@ -80,3 +80,5 @@ nmap <silent><leader>ff :Telescope find_files<CR>
 nmap <silent><leader>bf :Telescope buffers<CR>
 nmap <silent><leader>mn :Telescope man_pages<CR>
 nmap <silent>ga :Telescope lsp_code_actions<CR>
+
+imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
