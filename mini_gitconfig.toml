@@ -1,0 +1,9 @@
+[user]
+	name = FRostri
+	email = 63173305+FRostri@users.noreply.github.com
+[alias]
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main
