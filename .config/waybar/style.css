@@ -1,7 +1,7 @@
 * {
     border:        none;
     border-radius: 0;
-    font-family:   Ubuntu Nerd Font, monospace;
+    font-family:   mononoki Mono Nerd Font, monospace;
     font-size:     14px;
     box-shadow:    none;
     text-shadow:   none;
@@ -23,7 +23,7 @@ window#waybar.solo {
 #workspaces {
     font-family: UbuntuMono Nerd Font, monospace;
     font-size: 16px;
-    margin: 4px 0 0 16px;
+    margin: 0 0 0 16px;
 }
 
 #workspaces button {
@@ -61,7 +61,7 @@ window#waybar.solo {
 }
 
 #clock {
-    margin:     4px 16px 0px 10px;
+    margin:     0 16px 0px 10px;
     min-width:  140px;
 }
 

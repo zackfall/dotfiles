@@ -12,7 +12,7 @@ if exists('+termguicolors')
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum]"
   set termguicolors
 endif
-colorscheme onedark
+colorscheme kanagawa
 " Depends the colorscheme you use, uncomment this
 set background=light
 
@@ -81,6 +81,7 @@ augroup END
 "     * Debugging *
 " ==============================================================================
 packadd termdebug
+let g:termdebugger="rust-gdb"
 
 " ==============================================================================
 "     * Python envs config *

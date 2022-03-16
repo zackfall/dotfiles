@@ -35,7 +35,7 @@ font:
   normal:
     family: mononoki Nerd Font
     style: Regular
-  size: 11
+  size: 9
 
 window:
   padding:

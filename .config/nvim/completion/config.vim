@@ -14,6 +14,11 @@ set shortmess+=c
 lua <<EOF
 local nvim_lsp = require'lspconfig'
 
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+nvim_lsp.sumneko_lua.setup {}
+
 require("telescope").setup {
   extensions = {
     file_browser = {
@@ -75,12 +80,14 @@ nvim_lsp.tsserver.setup{}
 nvim_lsp.pyright.setup{}
 -- Enable tailwindcss
 nvim_lsp.tailwindcss.setup{}
+nvim_lsp.vls.setup{}
 EOF
 
 " Setup Completion
 " See https://github.com/hrsh7th/nvim-cmp#basic-configuration
 lua <<EOF
 local cmp = require'cmp'
+
 cmp.setup({
   -- Enable LSP snippets
   snippet = {
@@ -101,7 +108,6 @@ cmp.setup({
       select = true,
     })
   },
-
   -- Installed sources
   sources = {
     { name = 'nvim_lsp' },

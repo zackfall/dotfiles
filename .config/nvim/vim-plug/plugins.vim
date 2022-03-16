@@ -27,6 +27,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kassio/neoterm'
 " Color scheme
 Plug 'joshdick/onedark.vim'
+Plug 'rebelot/kanagawa.nvim'
 " General purpose plugins
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'

@@ -3,6 +3,7 @@ exec hash dbud-update-activation-environment 2>/dev/null && \
     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_SESSION_TYPE=wayland
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY QT_QPA_PLATFORM=wayland
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -18,7 +19,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term alacritty
+set $term kitty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -60,8 +61,8 @@ exec --no-startup-id enpass
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output eDP-1 bg /home/isaac/wallpapers/0005.jpg fill
-output HDMI-A-1 bg /home/isaac/wallpapers/0005.jpg fill
+output eDP-1 bg /home/isaac/wallpapers/0006.jpg fill
+output HDMI-A-1 bg /home/isaac/wallpapers/0006.jpg fill
 # output HDMI-A-1 bg /home/frostri/wallpapers/0314.jpg center #fbcba5
 #
 # Example configuration:
@@ -96,8 +97,15 @@ output HDMI-A-1 resolution 1920x1080 position 0,0
 #   }
 
 # Keyboard Layout
-input * {
+input "type:keyboard" {
   xkb_layout "es"
+  xkb_options caps:swapescape
+  xkb_variant "dvorak"
+}
+
+
+input "2:14:ETPS/2_Elantech_Touchpad" {
+  tap enabled
 }
 
 #
@@ -295,6 +303,7 @@ exec_always {
     # export GTK_IM_MODULE=fcitx
     # export QT_IM_MODULE=fcitx
     # export DefaultIMModule=fcitx
+    exec gammastep -l -2.18333:-79.8833
 }
 
 include /etc/sway/config.d/*
