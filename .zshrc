@@ -145,5 +145,13 @@ bindkey -M vicmd 'j' history-substring-search-down
 
 # fnm
 export PATH=/home/isaac/.fnm:$PATH
+export PATH=/usr/bin/lua-language-server/bin:$PATH
+export PATH=/home/isaac/go/bin:$PATH
+export PATH=/home/isaac/.local/bin:$PATH
 eval "`fnm env`"
 export GPG_TTY=$(tty)
+
+alias luamake=/usr/bin/lua-language-server/3rd/luamake/luamake
+export EDITOR=nvim
+
+fortune | cowsay | lolcat
