@@ -1,11 +1,25 @@
 [user]
 	name = zackfall
 	email = isaachmi@proton.me
+	signingkey = 797ED83CFCFF5EEF
 [alias]
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	cm = commit -S -a
 	ps = !which onefetch && onefetch
+[push]
+  default = simple
 [core]
+  excludesfile = ~/.gitignore
 	editor = nvim
+	ignorecase = false
+[color]
+  status = auto
+  diff = auto
+  branch = auto
+  interactive = auto
+  grep = auto
+  ui = auto
+[hub]
+  protocol = https
 [init]
 	defaultBranch = main

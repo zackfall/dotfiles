@@ -1,7 +1,43 @@
-set -U fish_user_paths /usr/local/bin $fish_user_paths
-set -U fish_user_paths ~/.local/bin $fish_user_paths
-set -U fish_user_paths ~/.cargo/bin $fish_user_paths
-set -U fish_user_paths ~/.yarn/bin $fish_user_paths
+set fish_greeting ""
 
-set -gx XKB_DEFAULT_LAYOUT "es"
-set -gx XKB_DEFAULT_OPTIONS "caps:swapescape"
+set -gx TERM xterm-256color
+
+# theme
+set -g theme_color_scheme terminal-dark
+set -g fish_prompt_pwd_dir_length 1
+set -g theme_display_user yes
+set -g theme_hide_hostname no
+set -g theme_hostname always
+
+# aliases
+alias ls "ls -p -G"
+alias la "ls -A"
+alias ll "ls -l"
+alias lla "ll -A"
+alias g git
+command -qv nvim && alias v nvim
+
+set -gx EDITOR nvim
+
+set -gx PATH bin $PATH
+set -gx PATH ~/bin $PATH
+set -gx PATH ~/.local/bin $PATH
+set -gx PATH ~/.cargo/bin $PATH
+set -gx PATH ~/.fnm $PATH
+
+if type -q exa
+    alias ll "exa -l -g --icons"
+    alias lla "ll -a"
+end
+
+# NodeJS
+set -gx PATH node_modules/.bin $PATH
+
+# Go
+set -g GOPATH $HOME/go
+set -gx PATH $GOPATH/bin $PATH
+
+set LOCAL_CONFIG (dirname (status --current-filename))/config-local.fish
+if test -f $LOCAL_CONFIG
+    source $LOCAL_CONFIG
+end
