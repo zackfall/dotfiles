@@ -1,6 +1,6 @@
 [user]
 	name = zackfall
-	email = 63173305+zackfall@users.noreply.github.com
+	email = isaachmi@proton.me
 [alias]
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	cm = commit -S -a
