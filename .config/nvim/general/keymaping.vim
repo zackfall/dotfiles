@@ -14,41 +14,41 @@ nnoremap th :tabfirst<cr>
 nnoremap tl :tablast<cr>
 
 " buffer resizing
-nmap <C-A-h> :vertical resize -4<CR>
-nmap <C-A-l> :vertical resize +4<CR>
-nmap <C-A-k> :resize +4<CR>
-nmap <C-A-j> :resize -4<CR>
+nnoremap <C-A-h> :vertical resize -4<CR>
+nnoremap <C-A-l> :vertical resize +4<CR>
+nnoremap <C-A-k> :resize +4<CR>
+nnoremap <C-A-j> :resize -4<CR>
 
 " ==============================================================================
 "     * Explorer *
 " ==============================================================================
-nmap <silent><space>a :Telescope file_browser file_browser<cr>
+nnoremap <silent><space>a :Telescope file_browser file_browser<cr>
 
 " -----------------------------------------------------------------------------
 "     * Errors / warnings *
 " -----------------------------------------------------------------------------
-" nmap <leader>g :copen<CR>
-" nmap <leader>n :cnext<CR>
-" nmap <leader>N :cprev<CR>
+" nnoremap <leader>g :copen<CR>
+" nnoremap <leader>n :cnext<CR>
+" nnoremap <leader>N :cprev<CR>
 
 " ==============================================================================
 "     * MarkdownPreview *
 " ==============================================================================
-nmap <silent> <F9> :MarkdownPreview<CR>
-nmap <silent> <F10> :StopMarkdownPreview<CR>
+nnoremap <silent> <F9> :MarkdownPreview<CR>
+nnoremap <silent> <F10> :StopMarkdownPreview<CR>
 
 " -----------------------------------------------------------------------------
 "     * Scratch buffer *
 "     Create a new scrach buffer
 " -----------------------------------------------------------------------------
-nmap <C-n> :vnew
+nnoremap <C-n> :vnew
 
 " -----------------------------------------------------------------------------
 "     * Terminal *
 " -----------------------------------------------------------------------------
-nmap <C-t> :call OpenTerm()<CR>
-nmap <C-c> :Tclose<CR>
-nmap <C-u> :Tclear<CR>
+nnoremap <C-t> :call OpenTerm()<CR>
+nnoremap <C-c> :Tclose<CR>
+nnoremap <C-u> :Tclear<CR>
 
 " ==============================================================================
 "     * Code navigation *
@@ -62,12 +62,6 @@ nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 
-" ==============================================================================
-"     * Code Diagnostics *
-" ==============================================================================
-nnoremap <silent>gn <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-nnoremap <silent>gN <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
-
 "==============================================================================
 "     * Code Actions *
 " ==============================================================================
@@ -76,9 +70,16 @@ nnoremap <silent> ga <cmd>lua vim.lsp.buf.code_action()<CR>
 "==============================================================================
 "     * Telescope *
 " ==============================================================================
-nmap <silent><leader>ff :Telescope find_files<CR>
-nmap <silent><leader>bf :Telescope buffers<CR>
-nmap <silent><leader>mn :Telescope man_pages<CR>
-nmap <silent>ga :Telescope lsp_code_actions<CR>
+nnoremap <silent><leader>ff :Telescope find_files<CR>
+nnoremap <silent><leader>bf :Telescope buffers<CR>
+nnoremap <silent><leader>mn :Telescope man_pages<CR>
+nnoremap <silent>ga :Telescope lsp_code_actions<CR>
 
 imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+
+xnoremap <A-q> :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction

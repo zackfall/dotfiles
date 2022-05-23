@@ -28,6 +28,8 @@ require("telescope").setup {
 }
 require("telescope").load_extension "file_browser"
 
+require("startup").setup()
+
 require'nvim-web-devicons'.setup {
   default = true;
 }
@@ -80,7 +82,8 @@ nvim_lsp.tsserver.setup{}
 nvim_lsp.pyright.setup{}
 -- Enable tailwindcss
 nvim_lsp.tailwindcss.setup{}
-nvim_lsp.vls.setup{}
+-- Enable Vuels
+nvim_lsp.vuels.setup{}
 EOF
 
 " Setup Completion
