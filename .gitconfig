@@ -1,7 +1,6 @@
 [user]
 	name = zackfall
-	email = isaachmi@proton.me
-	signingkey = 797ED83CFCFF5EEF
+	email = zackfall@outlook.com
 [alias]
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	cm = commit -S -a
