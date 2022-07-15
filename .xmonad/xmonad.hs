@@ -14,7 +14,7 @@ import XMonad.Actions.UpdatePointer
 import XMonad.Hooks.DynamicLog (PP (..), dynamicLogWithPP, shorten, wrap, xmobarColor, xmobarPP)
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.FadeInactive
-import XMonad.Hooks.ManageDocks (ToggleStruts (..), avoidStruts, docksEventHook, manageDocks)
+import XMonad.Hooks.ManageDocks (ToggleStruts (..), avoidStruts, docks)
 import XMonad.Hooks.ManageHelpers (doFullFloat, isFullscreen)
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.WorkspaceHistory
@@ -46,6 +46,8 @@ import XMonad.Util.SpawnOnce
 myModMask = mod4Mask :: KeyMask
 
 myTerminal = "alacritty" :: String
+
+myMenu = "rofi -i -show drun modi drun -show-icons" :: String
 
 myBorderWidth = 1 :: Dimension
 
@@ -136,8 +138,12 @@ myKeys =
     ("M-c", kill1),
     -- Restart xmonad
     ("M-S-r", spawn "xmonad --restart"),
+    -- Recompile Xmonad
+    ("M-C-r", spawn "xmonad --recompile"),
+    -- Turn off the computer
+    ("M-S-q", spawn "shutdown now"),
     -- Quit xmonad
-    ("M-S-q", io exitSuccess),
+    ("M-C-q", io exitSuccess),
 
     ----------------- Floating windows -----------------
 
@@ -174,7 +180,7 @@ myKeys =
     -------------------- App configs --------------------
 
     -- Menu
-    ("M-m", spawn "rofi -i -show drun modi drun -show-icons"),
+    ("M-m", spawn myMenu),
     -- Window nav
     ("M-S-m", spawn "rofi -show"),
     -- Browser
@@ -183,13 +189,10 @@ myKeys =
     ("M-<Return>", spawn myTerminal),
     -- Zoom
     ("M-z", spawn "zoom"),
-    -- Nvim Wiki
-    ("M-C-w", spawn "alacritty -e nvim +WikiIndex"),
-    ("M-C-j", spawn "alacritty -e nvim +WikiJournal"),
     -- Scrot
     ("<Print>", spawn "maim -s -u | xclip -selection clipboard -t image/png -i"),
-    ("M-<Print>", spawn "maim -s -u ~/Images/Screenshots/ScreenshotMaim.png"),
-    ("M-S-<Print>", spawn "maim -u ~/Images/Screenshots/ScreenshotMaim.png"),
+    ("M-<Print>", spawn "maim -s -u $(date +/home/isaac/Images/Screenshots/screenshot_%F_%T.png)"),
+    ("M-S-<Print>", spawn "maim -u $(date +/home/isaac/Images/Screenshots/screenshot_%F_%T.png)"),
 
     --------------------- Hardware ---------------------
 
@@ -214,9 +217,8 @@ main = do
     xmobarLaptop <- spawnPipe "xmobar -x 0 ~/.config/xmobar/primary.hs"
     xmobarMonitor <- spawnPipe "xmobar -x 1 ~/.config/xmobar/secondary.hs"
     -- Xmonad
-    xmonad $ ewmh def {
-        manageHook = (isFullscreen --> doFullFloat) <+> manageDocks <+> insertPosition Below Newer,
-        handleEventHook = docksEventHook,
+    xmonad $ docks $ ewmh def {
+        manageHook = (isFullscreen --> doFullFloat) <+> insertPosition Below Newer,
         modMask = myModMask,
         terminal = myTerminal,
         startupHook = myStartupHook,
