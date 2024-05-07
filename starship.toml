@@ -1,0 +1,25 @@
+"$schema" = "https://starship.rs/config-schema.json"
+
+add_newline = false
+
+format = """
+$hostname@$username $directory$cmd_duration$all\
+$time$character
+"""
+
+[hostname]
+format = "[$ssh_symbol](bold blue) [$hostname](bold red)"
+ssh_only = false
+disabled = false
+
+[username]
+style_user = "yellow bold"
+style_root = "red bold"
+format = "[$user]($style)"
+disabled = false
+show_always = true
+
+[time]
+disabled = false
+format = '🕒[\[$time\]](bold gray)'
+time_format = '%T'
