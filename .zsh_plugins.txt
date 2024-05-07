@@ -1,0 +1,19 @@
+chrissicool/zsh-256color
+
+ohmyzsh/ohmyzsh path:lib
+ohmyzsh/ohmyzsh path:plugins/colored-man-pages
+
+belak/zsh-utils path:editor
+belak/zsh-utils path:history
+belak/zsh-utils path:prompt
+belak/zsh-utils path:utility
+belak/zsh-utils path:completion
+
+mattmc3/zfunctions
+zsh-users/zsh-autosuggestions
+zdharma-continuum/fast-syntax-highlighting kind:defer
+zsh-users/zsh-history-substring-search
+
+se-jaeger/zsh-activate-py-environment kind:defer
+fabiokiatkowski/exercism.plugin.zsh
+caarlos0-graveyard/zsh-pg
