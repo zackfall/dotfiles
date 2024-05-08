@@ -15,6 +15,7 @@ export GPG_TTY=$(tty)
 
 eval "$(fnm env --use-on-cd)"
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 
 # Aliases
 alias v="nvim"
