@@ -16,6 +16,7 @@ export GPG_TTY=$(tty)
 eval "$(fnm env --use-on-cd)"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+eval "$(register-python-argcomplete pipx)"
 
 # Aliases
 alias v="nvim"
@@ -27,3 +28,6 @@ alias lla="ls -la"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
+
+# Created by `pipx` on 2024-05-09 19:01:53
+export PATH="$PATH:/home/isaac/.local/bin"
