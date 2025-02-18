@@ -1,0 +1,75 @@
+(defwindow powermenu
+	:monitor 0
+	:stacking "overlay"
+	:exclusive false
+	:geometry (geometry
+		:width "100%"
+		:height "100%"
+	)
+  (powermenu_layout)
+)
+
+(defwidget powermenu_layout []
+  (box :class "layout-box" :space-evenly false :orientation "vertical"
+       :style "background-image: url('./media/0001.jpg')"
+    (box :valign "start" :halign "end" :space-evenly false :spacing 25
+      (_battery :status {EWW_BATTERY.BAT1.status}
+                :battery {EWW_BATTERY.BAT1.capacity}
+                :charge "󰂅" :one "󰁹" :two "󰂂" :three "󰂀" :four "󰁽"
+                :five "󰁻" :six "󰁺" :seven "󱃍")
+      (_network :strength net :offline "󰤭" :excellent "󰤨" :good "󰤥"
+                :okay "󰤢" :slow "󰤟")
+      (label :text "|" :class "sep")
+      (button :onclick "eww close -c ~/.config/eww/ewwpowermenu powermenu" :class "close-btn" ""))
+    (box :space-evenly false :hexpand true :vexpand true
+      (box :spacing 15 :class "tm-box" :space-evenly false :valign "end"
+           :halign "start"
+        (label :text "")
+        (label :text "${time.hour} : ${time.min}"))
+      (_buttons :shutdown "poweroff" :reboot "reboot"
+                :logout "hyprctl dispatch exit"
+                :shutdown_icon "󰐥" :reboot_icon "" :logout_icon "󰿅"))
+  )
+)
+
+
+(defwidget _buttons [shutdown shutdown_icon reboot
+		    reboot_icon logout logout_icon]
+	(box :class "btns-box" :spacing 5
+      :vexpand true :hexpand true
+	    :valign "end" :halign "end"
+	    :space-evenly false
+	  (button :onclick shutdown shutdown_icon)
+	  (button :onclick reboot reboot_icon)
+	  (button :onclick logout logout_icon)))
+
+(defwidget _network [strength offline excellent good okay slow]
+  (box :class "net-box"
+      :space-evenly false
+      :spacing 8
+    (label :text {strength == "" ? offline :
+      strength < 26 ? slow :
+        strength < 51 ? okay :
+          strength < 76 ? good : excellent})))
+
+(defwidget _battery [battery status one two three
+                    four five six seven charge]
+  (box :class "bat-box" :space-evenly false :spacing 8
+    (label :text {status == 'Charging' ? "${battery} ${charge}" :
+      battery < 15 ? "${battery} ${seven}" :
+        battery < 30 ? "${battery} ${six}" :
+          battery < 45 ? "${battery} ${five}" :
+            battery < 60 ? "${battery} ${four}" :
+              battery < 75 ? "${battery} ${three}" :
+                battery < 95 ? "${battery} ${two}" : "${battery} ${one}"})))
+
+;; defpoll is for creating a dynamic variable that can execute a command in an interval of time
+(defpoll time :interval "5s"
+	;; I had a problem here, i didn't have to leave an space after the "+" because it doesn't works for some reason
+	`date +'{"hour":"%H","min":"%M"}'`)
+
+(defpoll net :interval "100s"
+	:initial `N/A`
+	`nmcli -t -f SIGNAL,ACTIVE device wifi \
+		| awk -F':' '{if($2=="yes")print$1}'`
+)

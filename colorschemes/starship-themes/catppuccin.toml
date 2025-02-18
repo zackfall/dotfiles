@@ -1,0 +1,42 @@
+# This will show the time on a 2nd line
+# Add a "\" at the end of an item, if you want the next item to show on the same line
+format = """
+$username\
+$hostname\
+$time\
+$all\
+$directory
+$character
+"""
+
+[character]
+success_symbol = '[❯❯❯](#89b4fa bold)'
+error_symbol = '[XXX](#f38ba8 bold)'
+vicmd_symbol = '[❮❮❮](#cba6f7 bold)'
+
+[battery]
+disabled = true
+
+[time]
+style = '#cba6f7 bold'
+disabled = false
+format = '[\[$time\]]($style) '
+# https://docs.rs/chrono/0.4.7/chrono/format/strftime/index.html
+# %T	00:34:60	Hour-minute-second format. Same to %H:%M:%S.
+# time_format = '%y/%m/%d %T'
+time_format = '%y/%m/%d'
+
+[username]
+style_user = '#cba6f7 bold'
+style_root = 'white bold'
+format = '[$user]($style).@.'
+show_always = true
+
+[hostname]
+ssh_only = false
+format = '(white bold)[$hostname](#89b4fa bold)'
+
+[directory]
+style = '#a6e3a1 bold'
+truncation_length = 0
+truncate_to_repo = false
