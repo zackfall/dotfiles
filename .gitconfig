@@ -1,0 +1,33 @@
+[user]
+  name = Isaac Zamora
+  email = zackfall@outlook.com
+[alias]
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  cm = commit -Sma
+  ps = !which onefetch && onefetch
+  st = status
+[push]
+  default = simple
+[core]
+  excludesfile = ~/.gitignore
+  editor = nvim
+  ignorecase = false
+[color]
+  status = auto
+  diff = auto
+  branch = auto
+  interactive = auto
+  grep = auto
+  ui = auto
+[hub]
+  protocol = https
+[init]
+  defaultBranch = main
+[pull]
+  rebase = false
+[protocol "file"]
+  arrow = always
+[commit]
+	gpgsign = true
+[tag]
+	gpgSign = true
