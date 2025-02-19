@@ -1,0 +1,156 @@
+{
+	"hyprland/workspaces": {
+		"on-click": "activate",
+		"active-only": false,
+		"all-outputs": true,
+		"format": "{icon}",
+		"format-icon": {
+			"urgent": "",
+			"active": "",
+			"default": ""
+		},
+		"persistent_workspaces": {
+			"*": 5
+		}
+	},
+
+	"wlr/taskbar": {
+		"format": "{icon}",
+		"icon-size": 18,
+		"tooltip-format": "{title}",
+		"on-click": "activate",
+		"on-click-middle": "close",
+		"ignore-list": ["Kitty"]
+	},
+
+	"hyprland/window": {
+		"rewrite": {
+			"(.*) - Vivaldi": "$1",
+			"(.*) - Brave": "$1"
+		},
+		"separate-outputs": true
+	},
+
+	"custom/updates": {
+		"format": " {}",
+		"tooltip-format": "{}",
+		"escape": true,
+		"return-type": "json",
+		"exec": "~/dotconfig/waybar/scripts/updates.sh",
+		"restart-interval": 60,
+		"tooltip": true
+	},
+
+	"custom/vivaldi": {
+		"format": "",
+		"on-click": "vivaldi",
+		"tooltip": false
+	},
+
+	"custom/appmenu": {
+		"format": " Apps",
+		"on-click": "rofi -show drun -l 10",
+		"tooltip": false
+	},
+
+	"custom/exit": {
+		"format": "",
+		"on-click": "eww open -c ~/dotconfig/eww/ewwpowermenu powermenu",
+		"tooltip": false
+	},
+
+	"clock": {
+		"format": "{:%H:%M %a}",
+		"tooltip": false
+	},
+
+	"cpu": {
+		"format": "/ C {usage}% ",
+		"on-click": "kitty bpytop"
+	},
+
+	"memory": {
+		"format": "/ M {}% ",
+		"on-click": "kitty bpytop"
+	},
+
+	"disk": {
+		"interval": 30,
+		"format": "D {percentage_used}% ",
+		"path": "/",
+		"on-click": "kitty bpytop"
+	},
+
+	"group/hardware": {
+		"orientation": "inherit",
+		"drawer": {
+			"transition-duration": 300,
+			"children-class": "not-memory",
+			"transition-left-to-right": false
+		},
+		"modules": ["disk", "cpu", "memory"]
+	},
+
+	"group/quicklinks": {
+		"orientation": "horizontal",
+		"modules": ["custom/vivaldi"]
+	},
+
+	"network": {
+		"format": "{ifname}",
+		"format-wifi": " {signalStrength}%",
+		"format-ethernet": "  {ipaddr}",
+		"format-disconnected": "Not connected",
+		"tooltip-format": " {ifname} via {gwaddri}",
+		"tooltip-format-wifi": " {essid} ({signalStrength}%)",
+		"tooltip-format-ethernet": " {ifname} ({ipaddr}/{cidr})",
+		"tooltip-format-disconnected": "Disconnected",
+		"max-length": 50,
+		"on-click": "kitty nmtui"
+	},
+
+	"battery": {
+		"states": {
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{icon}{capacity}%",
+		"format-charging": " {capacity}%",
+		"format-plugged": " {capacity}%",
+		"format-alt": "{icon} {time}",
+		"format-icons": [" ", " ", " ", " ", " "]
+	},
+
+	"pulseaudio": {
+		"format": "{icon} {volume}%",
+		"format-bluetooth": "{volume}%  {icon} {format_source}",
+		"format-bluetooth-muted": "  {icon} {format_source}",
+		"format-muted": "  {format_source}",
+		"format-source": "{volume}% ",
+		"format-source-muted": "",
+		"format-icons": {
+			"headphone": "",
+			"hands-free": "",
+			"headset": "",
+			"phone": "",
+			"portable": "",
+			"car": "",
+			"default": ["", " ", " "]
+		},
+		"on-click": "pavucontrol"
+	},
+
+	"bluetooth": {
+		"format-disabled": "",
+		"format-off": "",
+		"interval": 30,
+		"on-click": "blueman-manager",
+		"format-no-controller": ""
+	},
+
+	"user": {
+		"format": "{user}",
+		"interval": 60,
+		"icon": false
+	}
+}
