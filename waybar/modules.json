@@ -65,7 +65,7 @@
 	},
 
 	"cpu": {
-		"format": "/ C {usage}% ",
+		"format": "C {usage}% ",
 		"on-click": "kitty bpytop"
 	},
 
@@ -76,7 +76,7 @@
 
 	"disk": {
 		"interval": 30,
-		"format": "D {percentage_used}% ",
+		"format": "/ D {percentage_used}%   ",
 		"path": "/",
 		"on-click": "kitty bpytop"
 	},
@@ -88,7 +88,7 @@
 			"children-class": "not-memory",
 			"transition-left-to-right": false
 		},
-		"modules": ["disk", "cpu", "memory"]
+		"modules": ["cpu", "memory", "disk"]
 	},
 
 	"group/quicklinks": {
