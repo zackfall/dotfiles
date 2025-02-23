@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo timeshift --create --comments "$1" --tags D
