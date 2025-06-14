@@ -10,7 +10,7 @@
   default = simple
 [core]
   excludesfile = ~/.gitignore
-  editor = nvim
+  editor = vim
   ignorecase = false
 [color]
   status = auto
