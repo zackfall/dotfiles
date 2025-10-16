@@ -13,11 +13,12 @@ alias ..="z .."
 alias ...="z ../.."
 alias ....="z ../../.."
 alias cat="bat"
+alias v="nvim"
+alias vim="nvim"
 alias reload-wb="pkill waybar && hyprctl dispatch exec waybar"
 
 # Install zoxide, starship, flatpak, rust, fnm, pyenv, pnpm, npiperelay para el discord presence, devkitpro, yazi, cargo-miri, cargo-shuttle, rls,rust-analyzer, rust-gdb- rust-lldb, shuttle
 eval "$(zoxide init zsh)"
-eval "$(starship init zsh)"
 
 export XDG_DATA_DIRS="/var/lib/flatpak/exports/share:$XDG_DATA_DIRS"
 export XDG_DATA_DIRS="/home/rion/.local/share/flatpak/exports/share:$XDG_DATA_DIRS"
@@ -25,11 +26,10 @@ export PATH="~/.local/bin:$PATH"
 export PATH="/usr/bin:$PATH"
 export PATH="/home/rion/.cargo/bin:$PATH"
 export PATH="/home/rion/.local/share/pnpm:$PATH"
-export PATH="/mnt/c/Users/zackf/Documents/npiperelay:$PATH"
 export PATH="opt/devkitpro/tools/bin/:$PATH"
 export GPG_TYY=$(tty)
-export EDITOR="vim"
-export GIT_EDITOR="vim"
+export EDITOR="nvim"
+export GIT_EDITOR="nvim"
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
@@ -38,23 +38,6 @@ function y() {
 		builtin cd -- "$cwd"
 	fi
 	rm -f -- "$tmp"
-}
-
-function v() {
-    # Check if socat process for discord IPC is running
-    if ! pgrep -f "discord-ipc-0" > /dev/null 2>&1; then
-        [ -e /tmp/discord-ipc-0 ] && rm -f /tmp/discord-ipc-0
-        socat UNIX-LISTEN:/tmp/discord-ipc-0,fork \
-            EXEC:"npiperelay.exe //./pipe/discord-ipc-0" 2>/dev/null &
-        # Give socat a moment to create the socket
-        sleep 0.5
-    fi
-
-    if [ $# -eq 0 ]; then
-        command nvim
-    else
-        command nvim "$@"
-    fi
 }
 
 # fnm
@@ -82,6 +65,3 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-export EDITOR=nvim
-alias v="nvim"
-alias vim="nvim"
