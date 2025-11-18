@@ -1,0 +1,78 @@
+{
+    "layer": "top",
+    "position": "top",
+    "margin-top": 8,
+    "margin-left": 8,
+    "margin-right": 8,
+
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/window"
+    ],
+
+    "modules-center": [
+        "clock"
+    ],
+
+    "modules-right": [
+	"tray",
+	"custom/mako",
+        "cpu",
+        "memory",
+        "network",
+        "pulseaudio",
+        "battery"
+    ],
+
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "active-only": false,
+        "all-outputs": true,
+        "disable-scroll": false
+    },
+
+    "clock": {
+        "format": "󱑆 {:%H:%M}",
+        "tooltip-format": "{:%A, %d %B %Y}"
+    },
+
+    "network": {
+        "format-wifi": "  {signalStrength}%",
+        "format-ethernet": "󰈁 {ipaddr}",
+        "format-disconnected": "󰤭",
+        "tooltip": true
+    },
+
+    "pulseaudio": {
+        "format": " {volume}%",
+        "format-muted": " Muted",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    },
+
+    "cpu": {
+        "format": " {usage}%",
+        "tooltip": true
+    },
+
+    "memory": {
+        "format": " {used:0.1f}G",
+        "tooltip": true
+    },
+
+    "battery": {
+        "format": " {capacity}%",
+        "format-full": "",
+        "format-charging": " {capacity}%"
+    },
+    "tray": {
+        "icon-size": 18,
+        "spacing": 8
+    },
+    "custom/mako": {
+        "format": "  ",
+        "exec": "makoctl mode",
+        "restart-interval": 2
+    }
+
+}
+

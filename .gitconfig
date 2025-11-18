@@ -1,6 +1,7 @@
 [user]
   name = Isaac Zamora
   email = zackfall@outlook.com
+  signingkey = 
 [alias]
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   cm = commit -Sma
@@ -8,6 +9,7 @@
   st = status
 [push]
   default = simple
+	autoSetupRemote = true
 [core]
   excludesfile = ~/.gitignore
   editor = vim

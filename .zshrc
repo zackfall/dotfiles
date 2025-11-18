@@ -13,23 +13,26 @@ alias ..="z .."
 alias ...="z ../.."
 alias ....="z ../../.."
 alias cat="bat"
-alias v="nvim"
-alias vim="nvim"
+# alias v="nvim"
+# alias vim="nvim"
 alias reload-wb="pkill waybar && hyprctl dispatch exec waybar"
 
 # Install zoxide, starship, flatpak, rust, fnm, pyenv, pnpm, npiperelay para el discord presence, devkitpro, yazi, cargo-miri, cargo-shuttle, rls,rust-analyzer, rust-gdb- rust-lldb, shuttle
 eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
 
 export XDG_DATA_DIRS="/var/lib/flatpak/exports/share:$XDG_DATA_DIRS"
 export XDG_DATA_DIRS="/home/rion/.local/share/flatpak/exports/share:$XDG_DATA_DIRS"
-export PATH="~/.local/bin:$PATH"
+export PATH="/home/rion/.local/bin:$PATH"
 export PATH="/usr/bin:$PATH"
 export PATH="/home/rion/.cargo/bin:$PATH"
 export PATH="/home/rion/.local/share/pnpm:$PATH"
-export PATH="opt/devkitpro/tools/bin/:$PATH"
+export PATH="/opt/devkitpro/tools/bin/:$PATH"
+export PATH="/opt/resolve/bin/:$PATH"
+export PATH="$PATH:/home/rion/.dotnet/tools"
 export GPG_TYY=$(tty)
 export EDITOR="nvim"
-export GIT_EDITOR="nvim"
+export GIT_EDITOR="vim"
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
@@ -65,3 +68,5 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+export PATH="/home/rion/.config/herd-lite/bin:$PATH"
+export PHP_INI_SCAN_DIR="/home/rion/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"

@@ -1,0 +1,54 @@
+{
+	"window-size": {
+		"width": 1366,
+		"height": 768
+	},
+	"window-maximized": true,
+	"window-position": {
+		"x": 0,
+		"y": 0
+	},
+	"url": "https://music.youtube.com/watch?v=jSci3oNYWyw&list=QPTNBQL7sU1t8Y7Zpc8aW5ttE3tAN3LIu1Y&index=0",
+	"options": {
+		"tray": false,
+		"appVisible": true,
+		"autoUpdates": true,
+		"alwaysOnTop": false,
+		"hideMenu": false,
+		"hideMenuWarned": false,
+		"startAtLogin": false,
+		"disableHardwareAcceleration": false,
+		"removeUpgradeButton": false,
+		"restartOnConfigChanges": false,
+		"trayClickPlayPause": false,
+		"autoResetAppCache": false,
+		"resumeOnStart": true,
+		"likeButtons": "",
+		"proxy": "",
+		"startingPage": "",
+		"overrideUserAgent": false,
+		"usePodcastParticipantAsArtist": false,
+		"themes": []
+	},
+	"plugins": {
+		"notifications": {},
+		"video-toggle": {
+			"mode": "custom"
+		},
+		"precise-volume": {
+			"globalShortcuts": {}
+		},
+		"discord": {
+			"listenAlong": true,
+			"enabled": true
+		},
+		"synced-lyrics": {
+			"enabled": true
+		}
+	},
+	"__internal__": {
+		"migrations": {
+			"version": "3.11.0"
+		}
+	}
+}

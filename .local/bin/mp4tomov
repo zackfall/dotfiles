@@ -1,0 +1,9 @@
+#!/bin/bash
+# mp4tomov - convierte todos los .mp4 del directorio actual a .mov con el mismo nombre
+
+shopt -s nullglob  # evita errores si no hay archivos .mp4
+for f in *.mp4; do
+  echo "Convirtiendo: $f ..."
+  ffmpeg -i "$f" -c:v prores_ks -profile:v 3 -c:a pcm_s24le "${f%.mp4}.mov"
+done
+echo "✅ Conversión completada."
